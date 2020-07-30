@@ -34,7 +34,7 @@ int main() {
         __m128i m =_mm_aesenc_si128    (test, k);
    	 _mm_storeu_si128((__m128i *) a,m);
 	aes((_512_state*)c,(_512_key*)key);
-  aes2(s,i);
+  s = aes2(s,i);
   STORE(b,s);
   phex(b);
   phex(a);
