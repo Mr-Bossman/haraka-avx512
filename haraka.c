@@ -43,7 +43,8 @@ void load_constants() {
   rc[7] = _mm512_set_epi32(0xec6b43f0,0x6ba8e9aa,0x9d6c069d,0xa946ee5d,0xcb1e6950,0xf957332b,0xa2531159,0x3bf327c1,0x2cee0c75,0x00da619c,0xe4ed0353,0x600ed0d9,0xf0b1a5a1,0x96e90cab,0x80bbbabc,0x63a4a350);
   rc[8] = _mm512_set_epi32(0xae3db102,0x5e962988,0xab0dde30,0x938dca39,0x17bb8f38,0xd554a40b,0x8814f3a8,0x2e75b442,0x34bb8a5b,0x5f427fd7,0xaeb6b779,0x360a16f6,0x26f65241,0xcbe55438,0x43ce5918,0xffbaafde);
   rc[9] = _mm512_set_epi32(0x4ce99a54,0xb9f3026a,0xa2ca9cf7,0x839ec978,0xae51a51a,0x1bdff7be,0x40c06e28,0x22901235,0xa0c1613c,0xba7ed22b,0xc173bc0f,0x48a659cf,0x756acc03,0x02288288,0x4ad6bdfd,0xe9c59da1);
-}
+}//duck its endien ness
+
 
 void test_implementations() {
   unsigned char *in = (unsigned char *)calloc(64*8, sizeof(unsigned char));
@@ -301,7 +302,7 @@ void haraka512(unsigned char *out, const unsigned char *in) {
   i = s;
 
   s= aes2(s,rc[0]);
-  STORE(out,s);
+  STORE(out,rc[0]);
   phex(out);
 printf("\n");
 
