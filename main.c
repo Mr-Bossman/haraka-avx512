@@ -21,10 +21,10 @@ static void phex(uint8_t* str)
     printf("\n");
 }
 int main() {
- 	uint8_t a[64];
-	uint8_t b[16] = {0};
+ 	alignas(64) uint8_t a[64];
+	alignas(64) uint8_t b[64] = {0};
 	for(int i = 0; i <64;i++)a[i] = i;
 	load_constants();
-	haraka512((uint8_t*)b,(uint8_t*)a);
+	haraka512(b,a);
 phex(b);
 }

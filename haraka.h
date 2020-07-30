@@ -80,8 +80,10 @@ u512 MIX_4;
   s0 = tmp;
 
 
-#define MIX4(s)	s = _mm512_permutexvar_epi32 (MIX_4, s);
-#define TRUNCSTORE(out, s0, s1, s2, s3) \
+#define MIX4(s) \
+  s = _mm512_permutexvar_epi32 (MIX_4, s);
+
+#define TRUNCSTORE(out, s) \
   *(u64*)(out) = *(((u64*)&s + 1)); \
   *(u64*)(out + 8) = *(((u64*)&s + 3)); \
   *(u64*)(out + 16) = *(((u64*)&s + 4)); \
