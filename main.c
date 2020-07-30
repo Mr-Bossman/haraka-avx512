@@ -11,9 +11,9 @@ Timing code for optimized implementation of Haraka.
 #include <stdalign.h>
 
 
-static void phex(uint32_t* str)
+static void phex(uint8_t* str)
 {
-    uint8_t len = 16;
+    uint8_t len = 64;
 
     unsigned char i;
     for (i = 0; i < len; ++i)
@@ -21,9 +21,9 @@ static void phex(uint32_t* str)
     printf("\n");
 }
 int main() {
- 	alignas(64) uint32_t a[16] = {1,2,4,5,6,7,8,9,10,12,13,14,15};
-	alignas(64) uint32_t b[16] = {1};
-
+ 	uint8_t a[64];
+	uint8_t b[16] = {0};
+	for(int i = 0; i <64;i++)a[i] = i;
 	load_constants();
 	haraka512((uint8_t*)b,(uint8_t*)a);
 phex(b);
