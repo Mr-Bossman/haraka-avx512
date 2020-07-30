@@ -36,6 +36,6 @@ phex(b);
  __m512i i = _mm512_load_epi32 (key);
   s = aes2(s,i);
   _mm512_store_epi32(b,s);
-  phex(b,64);
-  phex(a,64);
+  phex(b);
+  phex(a);
 }
