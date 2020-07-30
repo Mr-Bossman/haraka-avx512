@@ -286,10 +286,21 @@ void haraka256_8x(unsigned char *out, const unsigned char *in) {
   // STORE(out + 240, s[7][1]);
 }
 */
+static void phex(uint8_t* str)
+{
+    uint8_t len = 64;
+
+    unsigned char i;
+    for (i = 0; i < len; ++i)
+        printf("%lx, ", str[i]);
+    printf("\n");
+}
 void haraka512(unsigned char *out, const unsigned char *in) {
   u512 s,i;
   s = LOAD (in);
   i = s;
+  STORE(out,s);
+  phex(out);
   AES4(s, 0);
   MIX4(s);
 
@@ -314,6 +325,8 @@ void haraka512(unsigned char *out, const unsigned char *in) {
 void haraka512_zero(unsigned char *out, const unsigned char *in) {
   u512 s,i;
   s = LOAD (in);
+  STORE(out,s);
+  phex(out);
   i = s;
   AES4_zero(s, 0);
   MIX4(s);
