@@ -299,9 +299,10 @@ void haraka512(unsigned char *out, const unsigned char *in) {
   u512 s,i;
   s = LOAD (in);
   i = s;
+
+  AES4(s, 0);
   STORE(out,s);
   phex(out);
-  AES4(s, 0);
   MIX4(s);
 
   AES4(s, 2);
