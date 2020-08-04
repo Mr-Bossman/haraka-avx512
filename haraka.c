@@ -31,7 +31,8 @@ u512 rc[10];
 u512 rc0[10] = {0};
 u512 MIX_4;
 void load_constants() {
-  MIX_4 = _mm512_set_epi32(3,11,7,15,8,0,12,4,9,1,13,5,2,10,6,14);
+  //MIX_4 = _mm512_set_epi32(3,11,7,15,8,0,12,4,9,1,13,5,2,10,6,14); stupid thing goes the wrong way
+	MIX_4 = _mm512_set_epi32(14,6,10,2,5,13,1,9,4,12,0,8,15,7,11,3);
 
   rc[0] = _mm512_set_epi32(0x0ed6eae6,0x2e7b4f08,0xbbf3bcaf,0xfd5b4f79,0x3402de2d,0x53f28498,0xcf029d60,0x9f029114,0x8b66b4e1,0x88f3a06b,0x640f6ba4,0x2f08f717,0x0684704c,0xe620c00a,0xb2c5fef0,0x75817b9d);
   rc[1] = _mm512_set_epi32(0x2924d9b0,0xafcacc07,0x675ffde2,0x1fc70b3b,0x67c28f43,0x5e2e7cd0,0xe2412761,0xda4fef1b,0x7eeacdee,0x6e9032b7,0x8d5335ed,0x2b8a057b,0xcbcfb0cb,0x4872448b,0x79eecd1c,0xbe397044);
