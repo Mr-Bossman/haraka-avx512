@@ -37,7 +37,11 @@ typedef unsigned long u64;
 #endif
 typedef __m512i u512;
 
-extern u512 rc[20];
+extern u512 rc[10];
+extern u512 rc0[10];
+extern u512 rc256[20];
+
+
 u512 MIX_4;
 u512 MIX_2;
 
@@ -45,19 +49,17 @@ u512 MIX_2;
 #define STORE(dest,src) _mm512_store_epi32((u512 *)(dest),src)
 
 #define AES2(s, rci) \
-		s = aes2(s,rc[rci]);\
-		s = aes2(s,rc[rci+10]);
-/*
-#define AES2_4x(s0, s1, s2, s3, rci) \
-  AES2(s0[0], s0[1], rci); \
-  AES2(s1[0], s1[1], rci); \
-  AES2(s2[0], s2[1], rci); \
-  AES2(s3[0], s3[1], rci);
+		s = aes2(s,rc256[rci]);\
+		s = aes2(s,rc256[rci+10]);
 
-#define AES2_8x(s0, s1, s2, s3, s4, s5, s6, s7, rci) \
-  AES2_4x(s0, s1, s2, s3, rci); \
-  AES2_4x(s4, s5, s6, s7, rci);
-*/
+#define AES2_4x(s, rci) \
+  AES2(s[0], rci); \
+  AES2(s[1], rci);
+
+#define AES2_8x(s0, s1, rci) \
+  AES2_4x(s0, rci); \
+  AES2_4x(s1, rci);
+
 #define AES4(s, rci)\
   s = aes2(aes2(s,rc[rci]),rc[rci+1])
 
