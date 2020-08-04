@@ -111,8 +111,12 @@ void haraka256(unsigned char *out, const unsigned char *in) {
 	  i = s;
 
 	  AES2(s, 0);
-	  MIX2(s);
 
+		  STORE(out, s);
+		  phex(out);
+	  MIX2(s);
+	  STORE(out, s);
+	  phex(out);
 	  AES2(s, 1);
 	  MIX2(s);
 
