@@ -294,7 +294,7 @@ static void phex(uint8_t* str)
     unsigned char i;
     for (i = 0; i < len; ++i)
         printf("%lx, ", str[i]);
-    printf("\n");
+    printf("\n\n");
 }
 void haraka512(unsigned char *out, const unsigned char *in) {
   u512 s,i;
@@ -302,9 +302,10 @@ void haraka512(unsigned char *out, const unsigned char *in) {
   i = s;
 
   AES4(s, 0);
-  MIX4(s);
-  STORE(out,s);
+  	  STORE(out,s);
   phex(out);
+  MIX4(s);
+
 
   AES4(s, 2);
   MIX4(s);
