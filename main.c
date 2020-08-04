@@ -51,9 +51,13 @@ double timeit(hash_function func, int inlen, int outlen) {
 
 int main() {
   test_implementations();
-  //printf("Haraka-256 1x: %f cycles per byte\n", timeit(haraka256, 32, 32));
- // printf("Haraka-256 4x: %f cycles per byte\n", timeit(haraka256_4x, 4*32, 4*32));
-  //printf("Haraka-256 8x: %f cycles per byte\n", timeit(haraka256_8x, 8*32, 8*32));
+  printf("Haraka-256 1x: %f cycles per byte\n", timeit(haraka256, 32, 32));
+  printf("Haraka-256 4x: %f cycles per byte\n", timeit(haraka256_4x, 4*32, 4*32));
+  printf("Haraka-256 8x: %f cycles per byte\n", timeit(haraka256_8x, 8*32, 8*32));
+
+  printf("Haraka-512 1x: %f cycles per byte\n", timeit(haraka512, 64, 32));
+  printf("Haraka-512 4x: %f cycles per byte\n", timeit(haraka512_4x, 4*64, 4*32));
+  printf("Haraka-512 8x: %f cycles per byte\n", timeit(haraka512_8x, 8*64, 8*32));
 
 //
 }
