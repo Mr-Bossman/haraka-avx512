@@ -4,6 +4,6 @@ git commit -a -m "run"
 git push 
 echo ip:
 read ip
-echo password:
-read pass
-echo $pass > ssh root@$ip "echo hi" > test
+echo user:
+read user
+ssh $user@$ip "cd Mr-Bossman-remove-plz  && git pull && ./haraka"
