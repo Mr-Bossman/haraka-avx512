@@ -319,7 +319,7 @@ void haraka512(unsigned char *out, const unsigned char *in) {
   s = _mm512_xor_si512(s, i);
   STORE(out,s);
 
-  TRUNCSTORE(out, s);
+  //TRUNCSTORE(out, s);
 }
 
 void haraka512_zero(unsigned char *out, const unsigned char *in) {
