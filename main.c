@@ -8,6 +8,7 @@
 #include <stdalign.h>
 
 
+
 static void phex(uint8_t* str)
 {
     uint8_t len = 64;
@@ -18,6 +19,11 @@ static void phex(uint8_t* str)
     printf("\n");
 }
 int main() {
-	if(test_implementations() != 0)printf("help"); // lol i think i can just do without the != 0 cus C
-	else printf("ayayay");
+ 	alignas(64) uint8_t v[64];
+	alignas(64) uint8_t x[64] = {0};
+	for(int i = 0; i <64;i++)v[i] = i;
+	load_constants();
+	haraka512_8x((uint8_t*)x,(uint8_t*)v);
+phex(x);
+
 }
