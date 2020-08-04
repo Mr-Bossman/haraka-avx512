@@ -348,7 +348,7 @@ void haraka512_zero(unsigned char *out, const unsigned char *in) {
 
 
 
-  TRUNCSTORE(out, s);
+ // TRUNCSTORE(out, s);
 }
 /*
 void haraka512_keyed(unsigned char *out, const unsigned char *in, const u128 *rc) {
