@@ -98,9 +98,15 @@ void haraka256(unsigned char *out, const unsigned char *in) {
 	  s = LOAD (in);
 	  i = s;
 
-	  AES2(s, 0);
+		s = aes2(s,rc[0]);
 	  STORE(out, s);
 	  phex(out);
+		s = aes2(s,(_mm512_slli_epi32(rc[0],128))); // wtf without () aorund the shift it gives errors for no reason could gcc expalin
+		  STORE(out, s);
+		  phex(out);
+			s = _mm512_slli_epi32(rc[0],128); // wtf without () aorund the shift it gives errors for no reason could gcc expalin
+			  STORE(out, s);
+			  phex(out);
 	  MIX2(s);
 
 	  AES2(s, 1);
