@@ -109,15 +109,7 @@ int test_implementations() {
   }
   return 0;
 }
-static void phex(uint8_t* str)
-{
-    uint8_t len = 32;
 
-    unsigned char i;
-    for (i = 0; i < len; ++i)
-        printf("%hhx, ", str[i]);
-    printf("\n");
-}
 void haraka256(unsigned char *out, const unsigned char *in) {
 	  u512 s,i;
 	  s = LOAD (in);
