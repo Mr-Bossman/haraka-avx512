@@ -11,7 +11,7 @@
 
 static void phex(uint8_t* str)
 {
-    uint8_t len = 64;
+    uint8_t len = 32;
 
     unsigned char i;
     for (i = 0; i < len; ++i)

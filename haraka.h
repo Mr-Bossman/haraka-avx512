@@ -61,8 +61,8 @@ u512 MIX_4;
 #define AES4(s, rci)\
   s = aes2(aes2(s,rc[rci]),rc[rci+1])
 
-#define AES4_zero(s, rci)\
-  s = aes2(aes2(s,rc0[rci]),rc0[rci+1])
+#define AES4_zero(a, rci)\
+  a = aes2(aes2(a,rc0[rci]),rc0[rci+1])
 
 #define AES4_4x(s, rci) \
   AES4(s[0], rci); \
