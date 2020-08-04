@@ -18,6 +18,6 @@ static void phex(uint8_t* str)
     printf("\n");
 }
 int main() {
-	test_implementations();
-
+	if(test_implementations() != 0)printf("help"); // lol i think i can just do without the != 0 cus C
+	else printf("ayayay");
 }

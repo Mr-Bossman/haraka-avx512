@@ -89,7 +89,7 @@ u512 MIX_4;
   *(u64*)(out + 16) = *(((u64*)&s + 4)); \
   *(u64*)(out + 24) = *(((u64*)&s + 6));
 void load_constants();
-void test_implementations();
+int test_implementations();
 
 /*
 void haraka256(unsigned char *out, const unsigned char *in);

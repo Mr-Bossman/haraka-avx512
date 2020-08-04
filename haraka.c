@@ -47,7 +47,7 @@ void load_constants() {
 }//duck its endien ness // good programers make programs to make their programs i fixed it
 
 
-void test_implementations() {
+int test_implementations() {
   unsigned char *in = (unsigned char *)calloc(64*8, sizeof(unsigned char));
   unsigned char *out256 = (unsigned char *)calloc(32*8, sizeof(unsigned char));
   unsigned char *out512 = (unsigned char *)calloc(32*8, sizeof(unsigned char));
@@ -77,13 +77,14 @@ void test_implementations() {
   for(i = 0; i < 32; i++) {
     if (out512[i % 32] != testvector512[i]) {
       printf("Error: testvector incorrect.\n");
-      return;
+      return -1;
     }
   }
 
   free(in);
   free(out256);
   free(out512);
+  return 0;
 }
 /*
 void haraka256(unsigned char *out, const unsigned char *in) {
