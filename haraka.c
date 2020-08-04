@@ -48,9 +48,9 @@ void load_constants() {
 
 
 int test_implementations() {
-	alignas(64)  unsigned char *in = (unsigned char *)calloc(64*8, sizeof(unsigned char));
-	alignas(64)  unsigned char *out256 = (unsigned char *)calloc(32*8, sizeof(unsigned char));
-	alignas(64)  unsigned char *out512 = (unsigned char *)calloc(32*8, sizeof(unsigned char));
+	alignas(64)  unsigned char in[64*8];
+	alignas(64)  unsigned char out256[32*8];
+	alignas(64)  unsigned char out512[32*8];
 	alignas(64)  unsigned char testvector256[32] = {0x80, 0x27, 0xcc, 0xb8, 0x79, 0x49, 0x77, 0x4b,
                                      0x78, 0xd0, 0x54, 0x5f, 0xb7, 0x2b, 0xf7, 0x0c,
                                      0x69, 0x5c, 0x2a, 0x09, 0x23, 0xcb, 0xd4, 0x7b,
@@ -80,10 +80,6 @@ int test_implementations() {
       return -1;
     }
   }
-
-  free(in);
-  free(out256);
-  free(out512);
   return 0;
 }
 /*
