@@ -2,8 +2,6 @@
 git add .
 git commit -a -m "run"
 git push 
-echo ip:
+echo user@ip:
 read ip
-echo user:
-read user
-ssh $user@$ip "cd Mr-Bossman-remove-plz  && git pull && ./haraka"
+ssh $ip "cd Mr-Bossman-remove-plz/haraka-avx512  && git pull && ./haraka"
