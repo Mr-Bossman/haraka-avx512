@@ -98,7 +98,7 @@ int test_implementations() {
   }
 
   load_constants();
-  haraka256(out512, in);
+  haraka256_4x(out512, in);
 
   // Verify output
   for(i = 0; i < 32; i++) {

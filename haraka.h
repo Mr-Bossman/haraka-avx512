@@ -93,9 +93,9 @@ int test_implementations();
 
 
 void haraka256(unsigned char *out, const unsigned char *in);
-/*void haraka256_4x(unsigned char *out, const unsigned char *in);
+void haraka256_4x(unsigned char *out, const unsigned char *in);
 void haraka256_8x(unsigned char *out, const unsigned char *in);
-*/
+
 void haraka512(unsigned char *out, const unsigned char *in);
 void haraka512_zero(unsigned char *out, const unsigned char *in);
 void haraka512_4x(unsigned char *out, const unsigned char *in);
