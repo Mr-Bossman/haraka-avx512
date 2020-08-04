@@ -37,7 +37,7 @@ typedef unsigned long u64;
 #endif
 typedef __m512i u512;
 
-extern u512 rc[10];
+extern u512 rc[20];
 u512 MIX_4;
 u512 MIX_2;
 
