@@ -84,13 +84,23 @@ int test_implementations() {
   }
   return 0;
 }
+static void phex(uint8_t* str)
+{
+    uint8_t len = 32;
 
+    unsigned char i;
+    for (i = 0; i < len; ++i)
+        printf("%hhx, ", str[i]);
+    printf("\n");
+}
 void haraka256(unsigned char *out, const unsigned char *in) {
 	  u512 s,i;
 	  s = LOAD (in);
 	  i = s;
 
 	  AES2(s, 0);
+	  STORE(out, s);
+	  phex(out);
 	  MIX2(s);
 
 	  AES2(s, 1);
@@ -284,15 +294,7 @@ void haraka256_8x(unsigned char *out, const unsigned char *in) {
   // STORE(out + 240, s[7][1]);
 }
 */
-static void phex(uint8_t* str)
-{
-    uint8_t len = 64;
 
-    unsigned char i;
-    for (i = 0; i < len; ++i)
-        printf("%hx, ", str[i]);
-    printf("\n");
-}
 void haraka512(unsigned char *out, const unsigned char *in) {
   u512 s,i;
   s = LOAD (in);
