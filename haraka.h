@@ -39,15 +39,15 @@ typedef __m512i u512;
 
 extern u512 rc[10];
 u512 MIX_4;
+u512 MIX_2;
+
 #define LOAD(src) _mm512_load_epi32((u512 *)(src))
 #define STORE(dest,src) _mm512_store_epi32((u512 *)(dest),src)
-/*
-#define AES2(s0, s1, rci) \
-  s0 = _mm_aesenc_si128(s0, rc[rci]); \
-  s1 = _mm_aesenc_si128(s1, rc[rci + 1]); \
-  s0 = _mm_aesenc_si128(s0, rc[rci + 2]); \
-  s1 = _mm_aesenc_si128(s1, rc[rci + 3]);
 
+#define AES2(s, rci) \
+		s = aes2(s,rc[rci]);\
+		s = aes2(s,(_mm512_srli_epi32(rc[rci],256))); // wtf without () aorund the shift it gives errors for no reason could gcc expalin
+/*
 #define AES2_4x(s0, s1, s2, s3, rci) \
   AES2(s0[0], s0[1], rci); \
   AES2(s1[0], s1[1], rci); \
@@ -74,10 +74,8 @@ u512 MIX_4;
   AES4_4x(s0, rci); \
   AES4_4x(s1, rci);
 
-//#define MIX2(s0, s1) \
-  tmp = _mm_unpacklo_epi32(s0, s1); \
-  s1 = _mm_unpackhi_epi32(s0, s1); \
-  s0 = tmp;
+#define MIX2(s) \
+  s = _mm512_permutexvar_epi32 (MIX_2, s);
 
 
 #define MIX4(s) \
@@ -91,15 +89,13 @@ u512 MIX_4;
 void load_constants();
 int test_implementations();
 
-/*
+
 void haraka256(unsigned char *out, const unsigned char *in);
-void haraka256_keyed(unsigned char *out, const unsigned char *in, const u128 *rc);
-void haraka256_4x(unsigned char *out, const unsigned char *in);
+/*void haraka256_4x(unsigned char *out, const unsigned char *in);
 void haraka256_8x(unsigned char *out, const unsigned char *in);
 */
 void haraka512(unsigned char *out, const unsigned char *in);
 void haraka512_zero(unsigned char *out, const unsigned char *in);
-//void haraka512_keyed(unsigned char *out, const unsigned char *in, const u128 *rc);
 void haraka512_4x(unsigned char *out, const unsigned char *in);
 void haraka512_8x(unsigned char *out, const unsigned char *in);
 

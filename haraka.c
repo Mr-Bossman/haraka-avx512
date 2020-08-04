@@ -30,9 +30,11 @@ Optimized Implementations for Haraka256 and Haraka512
 u512 rc[10];
 u512 rc0[10] = {0};
 u512 MIX_4;
+u512 MIX_2;
 void load_constants() {
   //MIX_4 = _mm512_set_epi32(3,11,7,15,8,0,12,4,9,1,13,5,2,10,6,14); stupid thing goes the wrong way
 	MIX_4 = _mm512_set_epi32(14,6,10,2,5,13,1,9,4,12,0,8,15,7,11,3);
+	MIX_2 = _mm512_set_epi32(7+8,5+8,3+8,1+8,6+8,4+8,2+8,0+8,7,5,3,1,6,4,2,0);
 
   rc[0] = _mm512_set_epi32(0x0ed6eae6,0x2e7b4f08,0xbbf3bcaf,0xfd5b4f79,0x3402de2d,0x53f28498,0xcf029d60,0x9f029114,0x8b66b4e1,0x88f3a06b,0x640f6ba4,0x2f08f717,0x0684704c,0xe620c00a,0xb2c5fef0,0x75817b9d);
   rc[1] = _mm512_set_epi32(0x2924d9b0,0xafcacc07,0x675ffde2,0x1fc70b3b,0x67c28f43,0x5e2e7cd0,0xe2412761,0xda4fef1b,0x7eeacdee,0x6e9032b7,0x8d5335ed,0x2b8a057b,0xcbcfb0cb,0x4872448b,0x79eecd1c,0xbe397044);
@@ -71,47 +73,44 @@ int test_implementations() {
   }
 
   load_constants();
-  haraka512_8x(out512, in);
+  haraka256(out512, in);
 
   // Verify output
   for(i = 0; i < 32; i++) {
-    if (out512[i % 32] != testvector512[i]) {
+    if (out512[i % 32] != testvector256[i]) {
       printf("Error: testvector incorrect.\n");
       return -1;
     }
   }
   return 0;
 }
-/*
+
 void haraka256(unsigned char *out, const unsigned char *in) {
-	__m128i s[2], tmp;
+	  u512 s,i;
+	  s = LOAD (in);
+	  i = s;
 
-	s[0] = LOAD(in);
-	s[1] = LOAD(in + 16);
+	  AES2(s, 0);
+	  MIX2(s);
 
-	AES2(s[0], s[1], 0);
-	MIX2(s[0], s[1]);
+	  AES2(s, 1);
+	  MIX2(s);
 
-	AES2(s[0], s[1], 4);
-	MIX2(s[0], s[1]);
+	  AES2(s, 2);
+	  MIX2(s);
 
-	AES2(s[0], s[1], 8);
-	MIX2(s[0], s[1]);
+	  AES2(s, 3);
+	  MIX2(s);
 
-	AES2(s[0], s[1], 12);
-	MIX2(s[0], s[1]);
+	  AES2(s, 4);
+	  MIX2(s);
 
-	AES2(s[0], s[1], 16);
-	MIX2(s[0], s[1]);
+	  s = _mm512_xor_si512(s, i);
 
-	s[0] = _mm_xor_si128(s[0], LOAD(in));
-	s[1] = _mm_xor_si128(s[1], LOAD(in + 16));
-
-	STORE(out, s[0]);
-	STORE(out + 16, s[1]);
+	  STORE(out, s);
 }
 
-void haraka256_keyed(unsigned char *out, const unsigned char *in, const u128 *rc) {
+/*void haraka256_keyed(unsigned char *out, const unsigned char *in, const u128 *rc) {
   __m128i s[2], tmp;
 
   s[0] = LOAD(in);
