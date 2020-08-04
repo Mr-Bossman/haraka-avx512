@@ -303,6 +303,8 @@ void haraka512(unsigned char *out, const unsigned char *in) {
 
   AES4(s, 0);
   MIX4(s);
+  STORE(out,s);
+  phex(out);
 
   AES4(s, 2);
   MIX4(s);
