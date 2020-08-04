@@ -46,7 +46,7 @@ u512 MIX_2;
 
 #define AES2(s, rci) \
 		s = aes2(s,rc[rci]);\
-		s = aes2(s,(_mm512_srli_epi32(rc[rci],256))); // wtf without () aorund the shift it gives errors for no reason could gcc expalin
+		s = aes2(s,(_mm512_srli_epi32(rc[rci],128))); // wtf without () aorund the shift it gives errors for no reason could gcc expalin
 /*
 #define AES2_4x(s0, s1, s2, s3, rci) \
   AES2(s0[0], s0[1], rci); \
