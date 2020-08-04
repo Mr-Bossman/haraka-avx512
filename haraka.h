@@ -64,7 +64,7 @@ u512 MIX_4;
 #define AES4_zero(s, rci)\
   s = aes2(aes2(s,rc0[rci]),rc0[rci+1])
 
-#define AES4_4x(s0, s1, s2, s3, rci) \
+#define AES4_4x(s, rci) \
   AES4(s[0], rci); \
   AES4(s[1], rci); \
   AES4(s[2], rci); \
@@ -100,8 +100,8 @@ void haraka256_8x(unsigned char *out, const unsigned char *in);
 void haraka512(unsigned char *out, const unsigned char *in);
 void haraka512_zero(unsigned char *out, const unsigned char *in);
 //void haraka512_keyed(unsigned char *out, const unsigned char *in, const u128 *rc);
-//void haraka512_4x(unsigned char *out, const unsigned char *in);
-//void haraka512_8x(unsigned char *out, const unsigned char *in);
+void haraka512_4x(unsigned char *out, const unsigned char *in);
+void haraka512_8x(unsigned char *out, const unsigned char *in);
 
 #endif
 

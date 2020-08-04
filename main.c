@@ -18,11 +18,6 @@ static void phex(uint8_t* str)
     printf("\n");
 }
 int main() {
- 	alignas(64) uint8_t v[64];
-	alignas(64) uint8_t x[64] = {0};
-	for(int i = 0; i <64;i++)v[i] = i;
-	load_constants();
-	haraka512((uint8_t*)x,(uint8_t*)v);
-phex(x);
+	test_implementations();
 
 }
