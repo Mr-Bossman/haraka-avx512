@@ -304,8 +304,6 @@ void haraka512(unsigned char *out, const unsigned char *in) {
 
   AES4(s, 0);
   MIX4(s);
-  STORE(out,s);
-  phex(out);
 
   AES4(s, 2);
   MIX4(s);
@@ -320,7 +318,6 @@ void haraka512(unsigned char *out, const unsigned char *in) {
   MIX4(s);
 
   s = _mm512_xor_si512(s, i);
-  STORE(out,s);
 
   TRUNCSTORE(out, s);
 }
@@ -328,9 +325,6 @@ void haraka512(unsigned char *out, const unsigned char *in) {
 void haraka512_zero(unsigned char *out, const unsigned char *in) {
   u512 s,i;
   s = LOAD (in);
-  STORE(out,s);
-  phex(out);
-  i = s;
   AES4_zero(s, 0);
   MIX4(s);
 
@@ -347,11 +341,8 @@ void haraka512_zero(unsigned char *out, const unsigned char *in) {
   MIX4(s);
 
   s = _mm512_xor_si512(s, i);
-  STORE(out,s);
 
-
-
- // TRUNCSTORE(out, s);
+  TRUNCSTORE(out, s);
 }
 /*
 void haraka512_keyed(unsigned char *out, const unsigned char *in, const u128 *rc) {
