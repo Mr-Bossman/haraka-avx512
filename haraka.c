@@ -71,7 +71,7 @@ int test_implementations() {
   }
 
   load_constants();
-  haraka512_8x(out512, in);
+  haraka512(out512, in);
 
   // Verify output
   for(i = 0; i < 32; i++) {
