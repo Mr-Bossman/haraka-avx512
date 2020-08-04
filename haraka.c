@@ -363,25 +363,25 @@ void haraka512_4x(unsigned char *out, const unsigned char *in) {
   MIX4(s[2]);
   MIX4(s[3]);
 
+  AES4_4x(s, 2);
+  MIX4(s[0]);
+  MIX4(s[1]);
+  MIX4(s[2]);
+  MIX4(s[3]);
+
+  AES4_4x(s, 4);
+  MIX4(s[0]);
+  MIX4(s[1]);
+  MIX4(s[2]);
+  MIX4(s[3]);
+
+  AES4_4x(s, 6);
+  MIX4(s[0]);
+  MIX4(s[1]);
+  MIX4(s[2]);
+  MIX4(s[3]);
+
   AES4_4x(s, 8);
-  MIX4(s[0]);
-  MIX4(s[1]);
-  MIX4(s[2]);
-  MIX4(s[3]);
-
-  AES4_4x(s, 16);
-  MIX4(s[0]);
-  MIX4(s[1]);
-  MIX4(s[2]);
-  MIX4(s[3]);
-
-  AES4_4x(s, 24);
-  MIX4(s[0]);
-  MIX4(s[1]);
-  MIX4(s[2]);
-  MIX4(s[3]);
-
-  AES4_4x(s, 32);
   MIX4(s[0]);
   MIX4(s[1]);
   MIX4(s[2]);

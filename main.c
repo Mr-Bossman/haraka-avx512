@@ -15,7 +15,7 @@ static void phex(uint8_t* str)
 
     unsigned char i;
     for (i = 0; i < len; ++i)
-        printf("%lx, ", str[i]);
+        printf("%hhx, ", str[i]);
     printf("\n");
 }
 int main() {
